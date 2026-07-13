@@ -1,10 +1,10 @@
 #include <stdio.h>
 
 /* Only change any of these 4 values */
-#define V0 0
-#define V1 -1
-#define V2 0
-#define V3 0
+#define V0 3
+#define V1 3
+#define V2 1
+#define V3 3
 
 int main(void) {
     int a;
@@ -32,6 +32,7 @@ int main(void) {
         break;
     case 2:
         printf("Chinese Erhu Guy\n");
+        break;
     case 3:
         printf("Yoshua\n");
         break;
