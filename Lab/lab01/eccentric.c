@@ -32,7 +32,6 @@ int main(void) {
         break;
     case 2:
         printf("Chinese Erhu Guy\n");
-        break;
     case 3:
         printf("Yoshua\n");
         break;
