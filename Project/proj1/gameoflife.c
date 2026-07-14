@@ -28,75 +28,76 @@ Color *evaluateOneCell(Image *image, int row, int col, uint32_t rule)
 
 	Color* clr = malloc(sizeof(Color));
 	if(clr == NULL)exit(-1);
-	if(image->image==NULL || row < 0 || row >= image->rows || col < 0 || col >= image->cols){
-		free(clr);
-		exit(-1);
-	}
-	int idx = row*image->cols + col;
-	if(idx >= image->cols*image->rows){
+
+	if(image->image == NULL || row < 0 || row >= image->rows || col < 0 || col >= image->cols){
 		free(clr);
 		exit(-1);
 	}
 
-	int cnt1 = 0,cnt2 = 0,cnt3 = 0;
 	int cols = image->cols;
 	int rows = image->rows;
-	for(int delta1 = -1;delta1 <= 1; ++delta1){
-		for(int delta2 = -1;delta2 <= 1; ++delta2){
-			if(delta1 == 0 && delta2 == 0)continue;;
-			int i = (row + delta1 + rows) % rows;
-			int j = (col + delta2 + cols) % cols;
-			int idx = i*cols + j;
-			if(image->image[idx]->B&1){
-				cnt1++;
-			}
-		}
-	}
-	if(image->image[row*cols+col]->B&1){
-		clr->B = ((rule>>(9 + cnt1))&1) ? 255 : 0;
-	}else{	
-		clr->B = ((rule>>(cnt1))&1) ? 255 : 0;
+	int idx = row * cols + col;
+
+	if(idx >= cols * rows || image->image[idx] == NULL){
+		free(clr);
+		exit(-1);
 	}
 
-	for(int delta1 = -1;delta1 <= 1; ++delta1){
-		for(int delta2 = -1;delta2 <= 1; ++delta2){
-			if(delta1 == 0 && delta2 == 0)continue;;
-			int i = (row + delta1 + rows) % rows;
-			int j = (col + delta2 + cols) % cols;
-			int idx = i*cols + j;
-			if(image->image[idx]->G&1){
-				cnt2++;
+	Color *current = image->image[idx];
+
+	uint8_t newR = 0;
+	uint8_t newG = 0;
+	uint8_t newB = 0;
+
+	for(int bit = 0; bit < 8; ++bit){
+		int cntR = 0;
+		int cntG = 0;
+		int cntB = 0;
+
+		for(int delta1 = -1; delta1 <= 1; ++delta1){
+			for(int delta2 = -1; delta2 <= 1; ++delta2){
+				if(delta1 == 0 && delta2 == 0)continue;
+
+				int i = (row + delta1 + rows) % rows;
+				int j = (col + delta2 + cols) % cols;
+				int neighborIdx = i * cols + j;
+
+				if(image->image[neighborIdx] == NULL){
+					free(clr);
+					exit(-1);
+				}
+
+				if((image->image[neighborIdx]->R >> bit) & 1){
+					cntR++;
+				}
+				if((image->image[neighborIdx]->G >> bit) & 1){
+					cntG++;
+				}
+				if((image->image[neighborIdx]->B >> bit) & 1){
+					cntB++;
+				}
 			}
 		}
-	}
-	if(image->image[row*cols+col]->G&1){
-		clr->G = ((rule>>(9 + cnt2))&1) ? 255 : 0;
-	}else{	
-		clr->G = ((rule>>(cnt2))&1) ? 255 : 0;
-	}
-	
-	for(int delta1 = -1;delta1 <= 1; ++delta1){
-		for(int delta2 = -1;delta2 <= 1; ++delta2){
-			if(delta1 == 0 && delta2 == 0)continue;;
-			int i = (row + delta1 + rows) % rows;
-			int j = (col + delta2 + cols) % cols;
-			int idx = i*cols + j;
-			if(image->image[idx]->R&1){
-				cnt3++;
-			}
-		}
+
+		int curR = (current->R >> bit) & 1;
+		int curG = (current->G >> bit) & 1;
+		int curB = (current->B >> bit) & 1;
+
+		int nextR = (rule >> (curR ? 9 + cntR : cntR)) & 1;
+		int nextG = (rule >> (curG ? 9 + cntG : cntG)) & 1;
+		int nextB = (rule >> (curB ? 9 + cntB : cntB)) & 1;
+
+		newR |= (uint8_t)(nextR << bit);
+		newG |= (uint8_t)(nextG << bit);
+		newB |= (uint8_t)(nextB << bit);
 	}
 
-	if(image->image[row*cols+col]->R&1){
-		clr->R = ((rule>>(9 + cnt3))&1) ? 255 : 0;
-	}else{	
-		clr->R = ((rule>>(cnt3))&1) ? 255 : 0;
-	}
+	clr->R = newR;
+	clr->G = newG;
+	clr->B = newB;
 
-	
 	return clr;
 }
-
 //The main body of Life; given an image and a rule, computes one iteration of the Game of Life.
 //You should be able to copy most of this from steganography.c
 Image *life(Image *image, uint32_t rule)
