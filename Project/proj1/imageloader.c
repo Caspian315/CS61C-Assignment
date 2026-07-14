@@ -42,7 +42,6 @@ Image *readData(char *filename)
 	fscanf(fp,"%d",&maxSize);
 
 	img->cols = cols;
-	img->rows = rows;
 	img->image = malloc(cols*rows*sizeof(Color*));
 	if(img->image == NULL){
 		free(img);
