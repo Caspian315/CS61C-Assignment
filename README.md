@@ -1,4 +1,6 @@
-# CS61C Assignments Repository
+# CS61C Assignments Learning Archive
+
+UC Berkeley CS61C Fall 2020 labs and projects learning archive. This repository is used to track my practice around computer architecture, C programming, RISC-V assembly, memory layout, and performance-oriented systems programming.
 
 *English | [中文](#中文说明)*
 
@@ -7,91 +9,97 @@
 ## English
 
 ### Overview
-This repository contains all **labs**, and **projects** for the UC Berkeley CS61C course. It is designed to facilitate practice and deepen your understanding of the course material.
 
-You can fork this repository to create your own working environment, track your progress, and store your solutions.
+CS61C focuses on the machine structures behind software. This repo keeps the course labs and projects in one place so I can review the full path from C programs to assembly, circuits, CPU design, and performance optimization.
 
-### Features
-- **Labs:** Hands-on practice to strengthen core concepts.
-- **Projects:** Large-scale assignments to apply knowledge in real-world scenarios.
+### What I Practice Here
 
-### How to Use
+| Area | Related Content |
+| --- | --- |
+| C programming | pointers, memory management, Makefile workflow |
+| RISC-V assembly | calling convention, matrix operations, low-level debugging |
+| Digital logic | Logisim circuits, ALU, register file, CPU datapath |
+| Computer architecture | cache, pipeline basics, memory hierarchy |
+| Performance | matrix operations, profiling, optimization mindset |
 
-#### 1. Fork the Repository
-1. Go to the repository: [CS61C-Assignments](https://github.com/InsideEmpire/CS61C-Assignments).
-2. Click the "Fork" button in the top-right corner of the page to create your own copy of the repository.
+### Repository Layout
 
-#### 2. Clone Your Forked Repository
-1. Open your terminal or command prompt.
-2. Clone your forked repository to your local machine:
-   ```bash
-   git clone https://github.com/<your-username>/CS61C-Assignments.git
-   ```
+```text
+.
+├── Lab/        # CS61C labs
+├── Project/    # course projects
+└── tools/      # Venus / Logisim setup notes and helper scripts
+```
 
-#### 3. Work on Assignments
-1. Navigate into the repository folder:
-   ```bash
-   cd CS61C-Assignments
-   ```
-2. Choose the directory for the assignment you want to work on (e.g., `hw01` for Homework 1):
-   ```bash
-   cd hw/hw01
-   ```
-3. Open the `.c` or `.h` files in your preferred text editor and start solving the problems!
+### Highlights
 
----
+- `Project/proj1`: C programming practice around image data and Game of Life.
+- `Project/proj2`: RISC-V assembly project for matrix operations and classification.
+- `Project/proj3`: Logisim CPU components and datapath practice.
+- `Project/proj4`: C extension / numerical computing practice.
+- `tools/tutorial.md`: environment notes for Venus and Logisim.
 
-### Notes
-- Ensure you have the necessary tools installed, such as **gcc** or **clang** for compiling C code and a make tool for running tests.
-- Use a text editor like VS Code, Sublime Text, or Vim for an enhanced coding experience.
-- [Here](tools/tutorial.md) is a tutorial about how to set up an environment for Venus and Logisim. **Don't use the old `.jar` file that comes with Lab or Project.**
+### Setup Notes
+
+See [tools/tutorial.md](tools/tutorial.md) for Venus and Logisim setup notes.
+
+General requirements may include:
+
+- `gcc` / `clang`
+- `make`
+- Java runtime for course tools
+- Python for test runners and helper scripts
 
 ### Disclaimer
-- This repository is **unofficial** and is not affiliated with or endorsed by UC Berkeley or the CS61C teaching team.
-- All course materials and content are property of UC Berkeley CS61C staff and are provided here for **personal learning and practice** only. Please respect academic integrity policies.
+
+This repository is for personal learning and review. It is not affiliated with UC Berkeley or the CS61C teaching team. Course materials belong to their respective authors; please respect academic integrity policies.
 
 ---
 
 ## 中文说明
 
 ### 项目简介
-本仓库包含了 UC Berkeley CS61C 课程的所有 **实验 (labs)** 和 **项目 (projects)**。通过 Fork 本仓库，您可以创建自己的工作环境，跟踪学习进度并保存作业的解答。
 
-### 功能特色
-- **实验 (labs)：** 实践操作，帮助加深对核心概念的理解。
-- **项目 (projects)：** 通过大型项目，综合应用所学知识，解决现实问题。
+这是我的 CS61C Fall 2020 课程实验与项目学习归档，主要用于复习计算机组成、C 语言、RISC-V 汇编、数字逻辑、CPU 数据通路和性能优化相关内容。
 
-### 使用方法
+### 学习内容
 
-#### 1. Fork 本仓库
-1. 打开仓库：[CS61C-Assignments](https://github.com/InsideEmpire/CS61C-Assignments)。
-2. 点击页面右上角的 "Fork" 按钮，将仓库复制到您的 GitHub 账号下。
+| 方向 | 内容 |
+| --- | --- |
+| C 语言基础 | 指针、内存管理、Makefile、调试 |
+| RISC-V 汇编 | 调用约定、矩阵运算、底层程序结构 |
+| 数字逻辑 | Logisim 电路、ALU、寄存器堆、CPU 组件 |
+| 计算机组成 | 缓存、流水线基础、内存层次结构 |
+| 性能优化 | 矩阵计算、测试、profiling 思路 |
 
-#### 2. 克隆您 Fork 的仓库
-1. 打开终端或命令提示符。
-2. 将 Fork 后的仓库克隆到本地：
-   ```bash
-   git clone https://github.com/<your-username>/CS61C-Assignments.git
-   ```
+### 目录结构
 
-#### 3. 开始完成作业
-1. 进入仓库目录：
-   ```bash
-   cd CS61C-Assignments
-   ```
-2. 选择您想完成的作业目录，例如 `hw01` 表示家庭作业 1：
-   ```bash
-   cd hw/hw01
-   ```
-3. 打开 `.c` 或 `.h` 文件，开始编写代码！
+```text
+.
+├── Lab/        # 课程实验
+├── Project/    # 课程项目
+└── tools/      # Venus / Logisim 环境说明和辅助脚本
+```
 
----
+### 项目亮点
 
-### 注意事项
-- 确保您的系统已安装 C 编译器（如 **gcc** 或 **clang**）以及 `make` 工具。
-- 推荐使用 VS Code、Sublime Text 或 Vim 等代码编辑器，提升编程体验。
-- 这是一份如何配置Venus和Logisim环境的[教程](tools/tutorial.md)。**请不要使用附带的`.jar`文件。**
+- `Project/proj1`：围绕图像数据和生命游戏的 C 语言练习。
+- `Project/proj2`：使用 RISC-V 汇编完成矩阵运算与分类流程。
+- `Project/proj3`：使用 Logisim 练习 CPU 组件和数据通路。
+- `Project/proj4`：C 扩展和数值计算相关练习。
+- `tools/tutorial.md`：Venus 与 Logisim 的环境配置说明。
+
+### 环境说明
+
+Venus 和 Logisim 环境可参考 [tools/tutorial.md](tools/tutorial.md)。
+
+常用依赖：
+
+- `gcc` / `clang`
+- `make`
+- Java runtime
+- Python
 
 ### 免责声明
-- 本仓库为 **非官方** 项目，与 UC Berkeley 及 CS61C 教学团队无关。
-- 所有课程内容版权归 UC Berkeley CS61C 团队所有，仅供 **个人学习和练习** 使用，请遵守学术诚信规定。
+
+本仓库仅用于个人学习和复盘，与 UC Berkeley 或 CS61C 教学团队无关。课程材料版权归原作者所有，请遵守学术诚信要求。
